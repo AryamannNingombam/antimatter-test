@@ -3,6 +3,7 @@ require('dotenv').config({
 })
 import { Request, Response, NextFunction } from 'express'
 import express from 'express'
+import { AuthRoutes } from './routes/Auth.routes'
 
 const cors = require('cors')
 const app = express()
@@ -51,9 +52,10 @@ app.use(express.json())
 app.get('/welcome', (req: Request, res: Response, next: NextFunction) => {
   return res.status(200).json({
     success: true,
-    message: 'Welcome to aether api!',
+    message: 'Welcome to my api!',
   })
 })
+app.use('/api/auth',AuthRoutes);
 const PORT = process.env.PORT || 8010
 app.listen(PORT, () => {
   console.log('working...')
